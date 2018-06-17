@@ -3,15 +3,17 @@ import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { Ionicons } from '@expo/vector-icons';
 
+const iconAndTextColor = '#9EB4CF';
+
 const MovieFooter = ({ voteAverate, releaseYear }) => {
   return (
     <View style={styles.footer}>
       <View style={styles.footerItem}>
-        <Ionicons name="md-star" size={32} color="#59A6CF" style={styles.icon} />
+        <Ionicons name="md-star" size={32} color={iconAndTextColor} style={styles.icon} />
         <Text style={styles.text}>{voteAverate}</Text>
       </View>
       <View style={styles.footerItem}>
-        <Ionicons name="md-calendar" size={32} color="#59A6CF" style={styles.icon} />
+        <Ionicons name="md-calendar" size={32} color={iconAndTextColor} style={styles.icon} />
         <Text style={styles.text}>{releaseYear}</Text>
       </View>
     </View>
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   text: {
-    color: '#59A6CF',
+    color: iconAndTextColor,
   }
 })
 

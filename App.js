@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, FlatList, Modal, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Dimensions, FlatList, Modal } from 'react-native';
 import { Constants } from 'expo';
 import { Movie, MovieDetail } from './components'
 
@@ -14,7 +14,7 @@ export default class App extends React.Component {
     results: [
     ],
     modalVisible: false,
-    movieId: null,
+    movieId: 19404,
   };
 
   fetcthItems = () => {
@@ -30,7 +30,6 @@ export default class App extends React.Component {
   }
 
   goToDetail = (id) => {
-    console.log(id)
     this.setState({modalVisible: true, movieId: id});
   }
 
@@ -50,18 +49,12 @@ export default class App extends React.Component {
 
         <Modal
           animationType="slide"
-          transparent={false}
+          transparent={true}
           visible={this.state.modalVisible}
           onRequestClose={() => {
             alert('Modal has been closed.');
           }}>
-          <MovieDetail id={19404}/>
-          <TouchableHighlight
-            onPress={() => {
-              this.setModalVisible(!this.state.modalVisible);
-            }}>
-            <Text>Hide Modal</Text>
-          </TouchableHighlight>
+          <MovieDetail id={this.state.movieId} goBack={() => this.setModalVisible(!this.state.modalVisible)}/>
         </Modal>
       </View>
     );
