@@ -46,13 +46,12 @@ Movie.defaultProps = {
 
 const styles = StyleSheet.create({
   movie: {
-    width: 300,
-    height: 400,
-    padding: 4,
-    display: 'flex'
+    width: 250,
+    height: 325,
+    display: 'flex',
   },
   poster: {
-    width: 292,
-    height: 392,
+    width: 250,
+    height: 325,
   },
 });

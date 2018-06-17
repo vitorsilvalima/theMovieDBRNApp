@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { Ionicons } from '@expo/vector-icons';
 
-const iconAndTextColor = '#9EB4CF';
+const iconAndTextColor = '#ededed';
 
 const MovieFooter = ({ voteAverate, releaseYear }) => {
   return (
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   footer: {
     position: 'absolute',
     bottom: 0,
-    width: 292,
+    width: 250,
     alignContent: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
