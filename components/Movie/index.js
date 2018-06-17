@@ -1,14 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text, ImageBackground, StyleSheet } from 'react-native';
-
+import MovieFooter  from './MovieFooter';
 
 export default class Movie extends PureComponent {
   render() {
     const { movie, onPress } = this.props;
     const {
       poster_path,
-      id
+      id,
+      vote_average,
+      release_date,
     } = movie;
 
     return (
@@ -18,9 +20,12 @@ export default class Movie extends PureComponent {
             source={{
               uri: `https://image.tmdb.org/t/p/w500/${poster_path}`,
             }}
-            style={styles.movie}
+            style={styles.poster}
           >
-            <Text>Windows</Text>
+            <MovieFooter
+              voteAverate={vote_average}
+              releaseYear={release_date.substring(0,4)}
+            />
           </ImageBackground>
         </TouchableOpacity>
       </View>
@@ -41,8 +46,13 @@ Movie.defaultProps = {
 
 const styles = StyleSheet.create({
   movie: {
-    width: 150,
-    height: 200,
+    width: 300,
+    height: 400,
     padding: 4,
+    display: 'flex'
+  },
+  poster: {
+    width: 292,
+    height: 392,
   },
 });
