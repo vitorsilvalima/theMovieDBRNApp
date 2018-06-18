@@ -1,52 +1,43 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, FlatList, Modal } from 'react-native';
+import { StyleSheet, View, FlatList, Modal, Text } from 'react-native';
 import { Constants } from 'expo';
-import { Movie, MovieDetail } from './components'
+import { MovieDetail, Menu, Loading } from './components';
+import menuItens from './config/menuItens';
+import { MediaList } from './containers';
 
-const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
 export default class App extends React.Component {
   constructor(props){
     super(props)
-    this.fetcthItems()
   }
+
   state = {
-    results: [
-    ],
     modalVisible: false,
     movieId: 19404,
+    tmdbUrl: 'https://api.themoviedb.org/3/movie/now_playing?api_key=b573d051ec65413c949e68169923f7ff',
+    selectMediaItem: menuItens[0],
   };
 
-  fetcthItems = () => {
-    fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=b573d051ec65413c949e68169923f7ff')
-      .then(response => response.json())
-      .then(({results}) => this.setState({
-        results
-      }))
+  getMediaList(){
+    const {path, title, tmdbUrl} = this.state.selectMediaItem;
+    return (tmdbUrl && title) ? (
+      <MediaList title={title} key={title} tmdbUrl={tmdbUrl} goToDetail={this.goToDetail} />
+    ) 
+      : null;
   }
 
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+  goToDetail = id => {
+    console.log(id)
   }
-
-  goToDetail = (id) => {
-    this.setState({modalVisible: true, movieId: id});
-  }
-
-  renderMovie = ({ item: movie }) => {
-    return (<Movie movie={movie} onPress={(id) => this.goToDetail(id)}/>)
-  }
-
   render() {
+    const { selectMediaItem } = this.state
     return (
       <View style={styles.container}>
-        <FlatList
-          keyExtractor={(item) => `${item.id}`}
-          data={this.state.results}
-          renderItem={this.renderMovie}
-          horizontal
-        />
-
+        <Menu itens={menuItens} onPress={(item) => {
+          console.log('selecting', item)
+          this.setState({ selectMediaItem: item })
+        }}/>
+        {this.getMediaList()}
         <Modal
           animationType="slide"
           transparent={true}
@@ -69,9 +60,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
     backgroundColor: 'black',
-  },
+  }
 });
