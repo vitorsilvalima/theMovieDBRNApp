@@ -12,6 +12,7 @@ export default class Movie extends PureComponent {
       vote_average,
       release_date,
     } = movie;
+    const releaseYear = release_date ? release_date.substring(0,4) : null;
 
     return (
       <View style={styles.movie}>
@@ -24,7 +25,7 @@ export default class Movie extends PureComponent {
           >
             <MovieFooter
               voteAverate={vote_average}
-              releaseYear={release_date.substring(0,4)}
+              releaseYear={releaseYear}
             />
           </ImageBackground>
         </TouchableOpacity>

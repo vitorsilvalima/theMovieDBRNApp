@@ -12,17 +12,20 @@ const MovieFooter = ({ voteAverate, releaseYear }) => {
         <Ionicons name="md-star" size={32} color={iconAndTextColor} style={styles.icon} />
         <Text style={styles.text}>{voteAverate}</Text>
       </View>
-      <View style={styles.footerItem}>
+      {releaseYear && <View style={styles.footerItem}>
         <Ionicons name="md-calendar" size={32} color={iconAndTextColor} style={styles.icon} />
         <Text style={styles.text}>{releaseYear}</Text>
-      </View>
+      </View>}
     </View>
   )
 }
 
+MovieFooter.defaultProps = {
+  releaseYear: null,
+}
 MovieFooter.propTypes = {
   voteAverate: PropTypes.number.isRequired,
-  releaseYear: PropTypes.string.isRequired,
+  releaseYear: PropTypes.string,
 }
 
 const styles = StyleSheet.create({

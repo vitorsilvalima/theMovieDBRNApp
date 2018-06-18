@@ -27,18 +27,18 @@ class MediaList extends Component {
   }
 
   renderMovie = ({ item: movie }) => {
-    return (<Movie movie={movie} onPress={(id) => this.goToDetail(id)}/>)
+    return (<Movie movie={movie} onPress={this.props.goToDetail}/>)
   }
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
-  goToDetail = (id) => {
-    this.setState({modalVisible: true, movieId: id});
+  getItemLayout(data, index) {
+    return {length: (250 + 10), offset: (250 + 10) * index, index}
   }
-
   render () {
+    const { title } = this.props;
     return (
       <Fragment>
         <View style={{height: 100, justifyContent: 'center', alignItems: 'center', paddingTop: 20, paddingBottom: 20}}>
@@ -47,10 +47,10 @@ class MediaList extends Component {
               width: 200,
               color: 'white',
               textAlign: 'center',
-            }}> Now Playing
+            }}> { title }
             </Text>
         </View>
-        <View style={{height: 400}}>
+        <View style={{height: 325}}>
           <FlatList
             keyExtractor={(item) => `${item.key}`}
             data={this.state.results}
@@ -59,6 +59,10 @@ class MediaList extends Component {
             horizontal
             showsHorizontalScrollIndicator={false}
             onEndReached={() => this.fetcthItems(this.state.page + 1)}
+            onEndReachedThreshold={0.5}
+            initialNumToRender={10}
+            windowSize={15}
+            getItemLayout={this.getItemLayout}
           />
         </View>
       </Fragment>
@@ -69,6 +73,7 @@ class MediaList extends Component {
 MediaList.propTypes = {
   tmdbUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  goToDetail: PropTypes.func.isRequired,
 };
 
 export default MediaList;
