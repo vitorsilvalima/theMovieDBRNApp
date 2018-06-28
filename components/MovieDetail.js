@@ -20,12 +20,8 @@ export default class MovieDetail extends PureComponent {
 
   componentWillMount(){
     const { id: movieId } = this.props;
-    // fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=b573d051ec65413c949e68169923f7ff&append_to_response=videos`)
-    //   .then(response => response.json())
-    //   .then(movie => this.setState({
-    //     movie,
-    //   }));
-    Promise.resolve(MovieMock)
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=b573d051ec65413c949e68169923f7ff&append_to_response=videos`)
+      .then(response => response.json())
       .then(movie => this.setState({
         movie,
       }));

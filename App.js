@@ -27,8 +27,12 @@ export default class App extends React.Component {
   }
 
   goToDetail = id => {
-    console.log(id)
+    this.setState({
+      modalVisible: true,
+      movieId: id,
+    })
   }
+
   render() {
     const { selectMediaItem } = this.state
     return (
@@ -42,10 +46,8 @@ export default class App extends React.Component {
           animationType="slide"
           transparent={true}
           visible={this.state.modalVisible}
-          onRequestClose={() => {
-            alert('Modal has been closed.');
-          }}>
-          <MovieDetail id={this.state.movieId} goBack={() => this.setModalVisible(!this.state.modalVisible)}/>
+          onRequestClose={() => this.setState({ modalVisible: false })}>
+          <MovieDetail id={this.state.movieId} goBack={() => this.setState({ modalVisible: false })}/>
         </Modal>
       </View>
     );
