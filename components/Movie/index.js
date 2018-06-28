@@ -1,7 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, View, Text, ImageBackground, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, ImageBackground, StyleSheet, Dimensions } from 'react-native';
 import MovieFooter  from './MovieFooter';
+
+const { width, height } = Dimensions.get('window')
+
+const getWidthSizeByPercentage = percentage => (percentage / 100) * width
+const getHeightSizeByPercentage = percentage => (percentage / 100) * height
+const movieWidth = getWidthSizeByPercentage(80)
+const movieHeight = getHeightSizeByPercentage(60)
+
 
 export default class Movie extends PureComponent {
   render() {
@@ -47,12 +55,12 @@ Movie.defaultProps = {
 
 const styles = StyleSheet.create({
   movie: {
-    width: 250,
-    height: 325,
+    width: movieWidth,
+    height: movieHeight,
     display: 'flex',
   },
   poster: {
-    width: 250,
-    height: 325,
+    width: movieWidth,
+    height: movieHeight,
   },
 });

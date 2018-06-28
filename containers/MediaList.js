@@ -1,8 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, View, FlatList, Text } from 'react-native';
+import { StyleSheet, View, FlatList, Text, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { Movie } from '../components';
 import uuidv1 from 'uuid/v1';
+
+const { width, height } = Dimensions.get('window')
+
+const getWidthSizeByPercentage = percentage => (percentage / 100) * width
+const getHeightSizeByPercentage = percentage => (percentage / 100) * height
+const movieWidth = getWidthSizeByPercentage(80)
+const movieHeight = getHeightSizeByPercentage(60)
 
 class MediaList extends Component {
   state = {
@@ -35,7 +42,7 @@ class MediaList extends Component {
   }
 
   getItemLayout(data, index) {
-    return {length: (250 + 10), offset: (250 + 10) * index, index}
+    return {length: (movieWidth + 10), offset: (movieWidth + 10) * index, index}
   }
   render () {
     const { title } = this.props;
@@ -88,5 +95,5 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20
   },
-  listWrapper: { height: 325 }
+  listWrapper: { height: movieHeight }
 })
