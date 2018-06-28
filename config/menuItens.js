@@ -17,19 +17,19 @@ const menuItens = [
     title: "Upcoming",
     path: "dasas",
     tmdbUrl: `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`,
-    icon: require('../assets/icons/rate.png')
+    icon: require('../assets/icons/upcoming.png')
   },
   {
     title: "Popular",
     path: "dasas",
     tmdbUrl: `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`,
-    icon: require('../assets/icons/rate.png')
+    icon: require('../assets/icons/popular.png')
   },
   {
     title: "Tv Upcoming",
     path: "dasas",
     tmdbUrl: `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}`,
-    icon: require('../assets/icons/rate.png')
+    icon: require('../assets/icons/television.png')
   },
   {
     title: "Tv Top Rated",
