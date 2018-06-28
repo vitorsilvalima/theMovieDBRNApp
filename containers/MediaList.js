@@ -41,20 +41,15 @@ class MediaList extends Component {
     const { title } = this.props;
     return (
       <Fragment>
-        <View style={{height: 100, justifyContent: 'center', alignItems: 'center', paddingTop: 20, paddingBottom: 20}}>
-            <Text style={{
-              fontSize: 30,
-              width: 200,
-              color: 'white',
-              textAlign: 'center',
-            }}> { title }
+        <View style={styles.titleWrapper}>
+            <Text style={styles.title}> { title }
             </Text>
         </View>
-        <View style={{height: 325}}>
+        <View style={styles.listWrapper}>
           <FlatList
             keyExtractor={(item) => `${item.key}`}
             data={this.state.results}
-            ItemSeparatorComponent={() => <View style={{width: 10}}/>}
+            ItemSeparatorComponent={() => <View style={styles.viewSeparator}/>}
             renderItem={this.renderMovie}
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -77,3 +72,21 @@ MediaList.propTypes = {
 };
 
 export default MediaList;
+
+const styles = StyleSheet.create({
+  viewSeparator: { width: 10 },
+  title: {
+    fontSize: 30,
+    width: 200,
+    color: 'white',
+    textAlign: 'center',
+  },
+  titleWrapper: {
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 20,
+    paddingBottom: 20
+  },
+  listWrapper: { height: 325 }
+})

@@ -36,7 +36,7 @@ export default class MovieDetail extends PureComponent {
     return videos && videos.results.length > 0 && videos.results[0].site === "YouTube"
       ? (
         <WebView
-          style={{flex: 1, height: 200}}
+          style={styles.videoPlayer}
           javaScriptEnabled={true}
           source={{uri: `https://www.youtube.com/embed/${videos.results[0].key}?rel=0&autoplay=0&showinfo=0&controls=0`}}
         />
@@ -52,12 +52,7 @@ export default class MovieDetail extends PureComponent {
         source={{
           uri: `https://image.tmdb.org/t/p/w500/${backdrop_path}`,
         }}
-        style={{
-          height: 200,
-          flex: 1,
-          paddingLeft: 15,
-          paddingTop: 10,
-        }}
+        style={styles.movieImage}
       >
         <TouchableOpacity
           onPress={goBack}>
@@ -74,23 +69,13 @@ export default class MovieDetail extends PureComponent {
     } = this.state.movie;
 
     return (
-      <ScrollView style={{
-        flex:1,
-        backgroundColor: '#F1FFF4',
-        marginTop: 50,
-        flexDirection: 'column',
-      }}>
+      <ScrollView style={styles.movieView}>
         {this.renderHeader()}
-        <View style={{ padding: 15 }}>
-          <Text style={{
-            fontSize: 30,
-            textAlign: 'center',
-          }}>{title}</Text>
+        <View style={styles.movieContentWrapper}>
+          <Text style={styles.movieContentTitle}>{title}</Text>
           <Text
             textBreakStrategy='highQuality'
-            style={{
-              textAlign: 'justify',
-            }}>
+            style={styles.movieContent}>
             {overview}
           </Text>
           {this.renderYoutubeTrailer()}
@@ -118,9 +103,28 @@ MovieDetail.defaultProps = {
 }
 
 const styles = StyleSheet.create({
-  movie: {
-    flex:1,
-    backgroundColor: '#D2FFFB',
-    marginTop: 20,
+  movieContent: {
+    textAlign: 'justify',
   },
+  movieContentWrapper: { padding: 15 },
+  movieContentTitle: {
+    fontSize: 30,
+    textAlign: 'center',
+  },
+  videoPlayer: {
+    flex: 1,
+    height: 200
+  },
+  movieView: {
+    flex:1,
+    backgroundColor: '#F1FFF4',
+    marginTop: 50,
+    flexDirection: 'column',
+  },
+  movieImage: {
+    height: 200,
+    flex: 1,
+    paddingLeft: 15,
+    paddingTop: 10,
+  }
 });
