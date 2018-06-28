@@ -1,3 +1,19 @@
+# The Movie Database React Native App
+
+Thiis project was made with love. The goal of this project was to use the movie database api to fetch movie
+details and display them in a nice UI. I was inspired by the navigation menu from Nubank. Feel free to fork it
+and give some feedback so we can together improve it.
+
+![Screenshot](/doc/assets/app.gif)
+
+## Test It Online with Expo
+https://exp.host/@vitorsilvalima/tmdb
+
+## Contact Info
+
+https://www.linkedin.com/in/vitor-silva-lima-233849a9/
+
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

@@ -1,6 +1,7 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
-    "name": "TMDB"
+    "name": "TMDB",
+    "icon": "assets/icons/tmdb.png"
   }
 }
